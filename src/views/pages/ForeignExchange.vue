@@ -12,16 +12,17 @@
 
     <!-- start main content -->
     <div class="container mx-auto p-2">
+      <div class="rwd-spacer"></div>
       <form action="#">
         <div class="max-w-sm mx-auto my-2 bg-white px-5 py-2">
           <ExchangeCalc
             :inputCurrency="mockApi.inputCurrency"
             :exchangeCurrency="mockApi.exchangeCurrency"
-            :exchangeRate="mockApi.exChangeRate"
+            :exchangeRate="mockApi.exchangeRate"
             :reportTime="mockApi.reportTime"
           />
         </div>
-
+        <div class="rwd-spacer"></div>
         <div class="max-w-sm mx-auto my-2 bg-white px-5 py-2">
           <div class="flex justify-between">
             <p class="form-group-label inline-flex">我要買入</p>
@@ -40,7 +41,8 @@
             @amountInput="setForm"
           />
           <p class="form-group-label mt-5">是否存入常用?</p>
-          <QuickAccess :inputData.sync="isSaveRegular" />
+          <QuickAccess @select="saveRegular" />
+          <div class="rwd-spacer"></div>
           <div class="w-full border rounded-md border-gray-400">
             <div
               class="
@@ -86,14 +88,15 @@
               >我已審閱並同意上述條款</label
             >
           </div>
-
-          <div class="mt-10">
+          <div class="rwd-spacer"></div>
+          <div class="mt-5">
             <PageBtn
               @goNext="submitForm()"
               proceedText="送出"
               :disabled="!(exchangeData['form-is-valid'] && consentChecked)"
             />
           </div>
+          <div class="rwd-spacer"></div>
         </div>
       </form>
     </div>
@@ -118,7 +121,7 @@ export default {
       modalType: "",
       consentChecked: false,
       exchangeData: { "form-is-valid": false },
-      isSaveRegular: true,
+      isSaveRegular: null,
       proceedText: "送出",
       mockApi: {
         inputCurrency: "美金",
@@ -145,7 +148,16 @@ export default {
     setForm(val) {
       this.exchangeData = val;
     },
+    saveRegular(val) {
+      this.isSaveRegular = val;
+    },
     submitForm() {
+      let dataTransferObject = {
+        consentChecked: this.consentChecked,
+        exchangeData: this.exchangeData,
+        isSaveRegular: this.isSaveRegular,
+      };
+      console.log("form content:", JSON.stringify(dataTransferObject, null, 2));
       /* send post request to submit form data */
     },
   },
@@ -153,24 +165,15 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+@import "src/stylesheets/global";
 .consent-content__block {
   height: 5em;
 }
-.input-wrapper__amount::after {
-  content: attr(data-currency);
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  transform: translate(0, -50%);
-}
-.dim-bg {
-  position: absolute;
-  top: -20%;
-  left: 0;
-  height: 140%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 99;
+::v-deep .form-element--focus-blue {
+  appearance: none;
+  outline: none;
+  &:focus {
+    border: 1px solid #3b82f6;
+  }
 }
 </style>

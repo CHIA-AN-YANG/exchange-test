@@ -20,6 +20,11 @@ a,a:link,a:hover,a:visited,a:active {
 ul,li {
   list-style-type: none;
 }
+::v-deep button:focus,
+::v-deep button {
+  outline: none;
+  appearance: none;
+}
 @media (max-width: $breakpoint-phone) {
   h1 {font-size: 1.2em;}
   h2 {font-size: 1em;}
@@ -30,128 +35,27 @@ ul,li {
   h1 {font-size: 1.6em;}
   h2 {font-size: 1.2em;}
   a,p {font-size: .8em;}
+}.dim-bg {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  height: 140%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99;
 }
-.main {
-  &__wrapper {
-    @include size(100vh, 100vw);
-    background-color: $light-bg-c;
-    padding-bottom: 150px;
-  }
-  &__card {
-    position: relative;
-    overflow: hidden;
-    max-width: 1000px;
-    min-height: 70vh;
-    margin: 0 auto;
-    text-align: center;
-    border-radius: 0;
-    background-color: $white-c;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    &--innerspace {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      margin: 0 auto;
-      align-items: center;
-      height: 100%;
-      width: 560px;
-    }
+@media (min-height: 668px), screen and (orientation: portrait) {
+  .rwd-spacer {
+    height: 1vh;
   }
 }
-@media (max-width: $breakpoint-phone) {
-  .main {
-    &__wrapper {
-      padding-bottom: 30px;
-      height: auto;
-      min-height: 100vh;
-    }
-    &__card {
-      max-width: 100vw;
-      overflow: auto;
-      min-height:none;
-      height: auto;
-      box-shadow: none;
-      &--innerspace {
-        width:98vw;
-      }
-    }
+@media (min-height: 741px), screen and (orientation: portrait) {
+  .rwd-spacer {
+    height: 2vh;
   }
 }
-
-@media (min-width: $breakpoint-phone) and (max-width: $breakpoint-tablet) {
-  .main {
-    &__wrapper {
-      padding-bottom: 100px;
-      height: auto;
-      min-height: 100vh;
-    }
-    &__card {
-      max-width: 86vw;
-      height: auto;
-      min-height:none;
-      &--innerspace {
-        width:78vw;
-      }
-    }
-  }  
-}
-
-@media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
-  .main {
-    &__card {
-      max-width: 86vw;
-      min-height:60vh;
-      &--innerspace {
-        width:78vw;
-      }
-    }
-  }  
-}
-
-@media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) and (orientation: portrait) {
-  .main {
-    &__wrapper {
-      padding-bottom: 100px;
-      height: auto;
-      min-height: 100vh;
-    }
-    &__card {
-      max-width: 86vw;
-      min-height: 38vh;
-      &--innerspace {
-        width:78vw;
-      }
-    }
-  }  
-}
-@media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop)  and (orientation: portrait) {
-  .main {
-    &__card {
-      height: 45vh;
-    }
-  } 
-}
-.btn{
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  &:after {
-    content: "";
-    position: absolute;
-    top: -50px;
-    left: -75px;
-    @include size(155px, 50px);
-    background: #fff;
-    opacity: .4;
-    transform: rotate(35deg);
-    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
-    z-index: 2;
-  }
-}
-.btn:hover {  
-  &:after {
-    left: 120%;
-    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+@media (min-height: 844px), screen and (orientation: portrait) {
+  .rwd-spacer {
+    height: 4vh;
   }
 }

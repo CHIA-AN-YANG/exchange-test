@@ -9,7 +9,6 @@
           flex-1
           py-2
           border-b-2 border-gray-400
-          focus:border-indigo-500
           text-gray-600
           placeholder-gray-400
           outline-none
@@ -21,9 +20,7 @@
           flex-1
           py-2
           border-b-2 border-gray-400
-          focus:border-indigo-500
           text-gray-600
-          placeholder-gray-400
           outline-none
         "
       ></div>
@@ -36,15 +33,13 @@
           flex-1
           py-2
           border-b-2 border-gray-400
-          focus:border-indigo-500
           text-gray-600
-          placeholder-gray-400
           outline-none
         "
       >
         <img
           class="currency-icon__rounded mr-2"
-          src="../../assets/us-flag-icon_round.png"
+          src="@/assets/us-flag-icon_round.png"
           alt="flag-icon"
         />
         {{ inputCurrency }}
@@ -57,9 +52,7 @@
           flex-1
           py-2
           border-b-2 border-gray-400
-          focus:border-indigo-500
           text-gray-600
-          placeholder-gray-400
           outline-none
         "
       >
@@ -72,12 +65,11 @@
           flex-1
           py-2
           border-b-2 border-gray-400
-          focus:border-indigo-500
           text-gray-600
           placeholder-gray-400
           outline-none
         "
-        :data-rate="rate"
+        :data-rate="exchangeRate"
       ></div>
     </div>
     <small class="text-gray-300"> 報價時間: {{ reportTime }} </small>
@@ -91,19 +83,6 @@ export default {
     exchangeRate: { type: Number },
     inputCurrency: { type: String },
     exchangeCurrency: { type: String },
-  },
-  data() {
-    return {
-      rate: "",
-    };
-  },
-  mounted() {
-    this.rate = this.exchangeRate;
-  },
-  methods: {
-    emitAmount() {
-      this.$emit("setAmount", this.inputAmount);
-    },
   },
 };
 </script>

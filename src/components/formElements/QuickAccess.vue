@@ -1,16 +1,18 @@
 <template>
   <div>
     <div class="flex items-center justify-center">
-      <div
+      <label
+        for="saveYes"
         class="
+          form-check-label
           w-full
           p-4
           border
           rounded-md
           border-gray-400
-          focus:border-indigo-500
           flex
         "
+        :class="{ 'border-blue-500': selectSaveRegular === 'yes' }"
       >
         <input
           class="
@@ -29,29 +31,26 @@
           "
           type="radio"
           name="saveRegular"
-          id="save-regular-yes"
-          v-model="inputData"
-          @keyup="$emit('update:inputData', inputData)"
-          checked
+          value="yes"
+          id="saveYes"
+          v-model="selectSaveRegular"
+          @mouseup="update()"
         />
-        <label
-          class="form-check-label inline-block h-6 pl-2 pr-5 mt-1 text-gray-800"
-          for="save-regular-yes"
-        >
-          是
-        </label>
-      </div>
-      <div
+        <span class="inline-block h-6 pl-2 pr-5 mt-1 text-gray-800"> 是 </span>
+      </label>
+      <label
+        for="saveNo"
         class="
           w-full
+          form-check-label
           p-4
           m-2
           border
           rounded-md
           border-gray-400
           flex
-          focus:border-indigo-500
         "
+        :class="{ 'border-blue-500': selectSaveRegular === 'no' }"
       >
         <input
           class="
@@ -69,18 +68,14 @@
             cursor-pointer
           "
           type="radio"
+          value="no"
           name="saveRegular"
-          id="save-regular-no"
-          v-model="inputData"
-          @keyup="$emit('update:inputData', inputData)"
+          id="saveNo"
+          v-model="selectSaveRegular"
+          @mouseup="update()"
         />
-        <label
-          class="form-check-label inline-block h-6 pl-2 pr-5 mt-1 text-gray-800"
-          for="save-regular-no"
-        >
-          否
-        </label>
-      </div>
+        <span class="inline-block h-6 pl-2 pr-5 mt-1 text-gray-800"> 否 </span>
+      </label>
     </div>
   </div>
 </template>
@@ -89,10 +84,14 @@
 export default {
   data() {
     return {
-      inputData: true,
+      selectSaveRegular: null,
     };
   },
-  methods: {},
+  methods: {
+    update() {
+      this.$emit("select", this.selectSaveRegular);
+    },
+  },
 };
 </script>
 <style scoped lang='scss'>

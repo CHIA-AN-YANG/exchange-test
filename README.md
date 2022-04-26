@@ -1,4 +1,4 @@
-# Checkout Process Mock
+# Exchange Mobile View
 
 A mock that showcases a exchange process, constructed with Vue.js.
 

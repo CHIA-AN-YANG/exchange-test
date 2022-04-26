@@ -18,6 +18,8 @@
           rounded-md
           border-gray-400
           focus:border-indigo-500
+          form-element--focus-blue
+          bg-white
         "
       />
     </div>
@@ -30,7 +32,16 @@
         id="exchange-amount"
         v-model="exchangeValue"
         @blur="calcAndEmit(exchangeValue, false)"
-        class="block w-full mt-2 p-2 border rounded-md border-gray-500"
+        class="
+          block
+          w-full
+          mt-2
+          p-2
+          border
+          rounded-md
+          border-gray-500
+          bg-gray-100
+        "
       />
     </div>
   </div>
@@ -60,6 +71,8 @@ export default {
   methods: {
     calcAndEmit(val, isBuyin) {
       if (this.buyinValue || this.exchangeValue) {
+        this.buyinValue = +this.buyinValue;
+        this.exchangeValue = +this.buyinValue;
         if (isBuyin) {
           this.exchangeValue = val * this.exchangeRate;
         } else {
@@ -70,10 +83,9 @@ export default {
           this.checkValid(this.exchangeValue)
         ) {
           this.inputData["input-amount"] = this.buyinValue;
-          this.inputData["exchange-amount"] = this.exchangeValue;
+          this.inputData["exchange-amount"] = Math.floor(this.exchangeValue);
           this.inputData["form-is-valid"] = true;
           this.$emit("amountInput", this.inputData);
-          console.log(this.inputData);
         } else {
           /* inform user about the error */
         }
@@ -88,37 +100,12 @@ export default {
 };
 </script>
 <style scoped lang='scss'>
-.group__buy-in,
-.group__buy-result {
-  height: 40px;
-}
-.label__buy-in,
-.label__buy-result {
-  width: 50px;
-  max-width: 50px;
-  padding-right: 5px;
-}
-.currency__buy-in {
-  position: relative;
-  min-width: 70px;
-  max-width: 70px;
-  display: inline-flex;
-}
-.input-icon__rounded {
-  object-fit: contain;
-  height: 100%;
-  width: auto;
-}
-.input__buy-result {
-  width: calc(100% - 125px);
-  user-select: none;
-  pointer-events: none;
-}
-.input__buy-in {
-  width: calc(100% - 55px);
-}
-#exchange-amount {
-  user-select: none;
-  pointer-events: none;
+.input-wrapper__amount::after {
+  content: attr(data-currency);
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translate(0, -50%);
 }
 </style>

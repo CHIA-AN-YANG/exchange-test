@@ -17,7 +17,7 @@
       font-medium
       rounded-md
       text-white
-      bg-indigo-600
+      bg-blue-600
       hover:bg-indigo-700
       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
     "
@@ -56,4 +56,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+button.inactive {
+  opacity: 0.8;
+}
 </style>
