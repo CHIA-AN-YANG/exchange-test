@@ -1,6 +1,5 @@
 <template>
-  <div class="max-w-sm mx-auto my-2 bg-white px-5 py-2">
-    <p class="form-group-label mt-5">我要買入</p>
+  <div>
     <div class="group__buy-in flex p-0">
       <input
         type="text"
@@ -10,27 +9,24 @@
           flex-1
           py-2
           border-b-2 border-gray-400
-          focus:border-gray-600
+          focus:border-indigo-500
           text-gray-600
           placeholder-gray-400
           outline-none
         "
       />
-      <input
-        type="number"
-        id="sourceCurrency"
-        name="sourceCurrencyAmount"
+      <div
         class="
-          input__buy-in
+          space__buy-in
           flex-1
           py-2
           border-b-2 border-gray-400
-          focus:border-gray-600
+          focus:border-indigo-500
           text-gray-600
           placeholder-gray-400
           outline-none
         "
-      />
+      ></div>
       <div
         type="text"
         id="sourceCurrency"
@@ -40,14 +36,14 @@
           flex-1
           py-2
           border-b-2 border-gray-400
-          focus:border-gray-600
+          focus:border-indigo-500
           text-gray-600
           placeholder-gray-400
           outline-none
         "
       >
         <img
-          class="input-icon__rounded mr-2"
+          class="currency-icon__rounded mr-2"
           src="../../assets/us-flag-icon_round.png"
           alt="flag-icon"
         />
@@ -61,7 +57,7 @@
           flex-1
           py-2
           border-b-2 border-gray-400
-          focus:border-gray-600
+          focus:border-indigo-500
           text-gray-600
           placeholder-gray-400
           outline-none
@@ -69,22 +65,20 @@
       >
         {{ exchangeCurrency }}
       </div>
-      <input
-        type="number"
-        id="targetCurrency"
-        data-currency="台幣"
-        :value="inputAmount * exchangeRate"
+      <div
         class="
-          input__buy-result
+          rate__buy-result
+          relative
           flex-1
           py-2
           border-b-2 border-gray-400
-          focus:border-gray-600
+          focus:border-indigo-500
           text-gray-600
           placeholder-gray-400
           outline-none
         "
-      />
+        :data-rate="rate"
+      ></div>
     </div>
     <small class="text-gray-300"> 報價時間: {{ reportTime }} </small>
   </div>
@@ -94,14 +88,17 @@
 export default {
   props: {
     reportTime: { type: String, default: "2021/12/01 15:33" },
-    exchangeRate: { type: Number, default: 33 },
-    inputCurrency: { type: String, default: "美金" },
-    exchangeCurrency: { type: String, default: "台幣" },
+    exchangeRate: { type: Number },
+    inputCurrency: { type: String },
+    exchangeCurrency: { type: String },
   },
   data() {
     return {
-      inputAmount: 0,
+      rate: "",
     };
+  },
+  mounted() {
+    this.rate = this.exchangeRate;
   },
   methods: {
     emitAmount() {
@@ -127,17 +124,23 @@ export default {
   max-width: 70px;
   display: inline-flex;
 }
-.input-icon__rounded {
+.currency-icon__rounded {
   object-fit: contain;
   height: 100%;
   width: auto;
 }
-.input__buy-result {
-  width: calc(100% - 125px);
-  user-select: none;
-  pointer-events: none;
+.rate__buy-result {
+  width: calc(100% - 55px);
 }
-.input__buy-in {
+.rate__buy-result::after {
+  content: attr(data-rate);
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translate(0, -50%);
+}
+.space__buy-in {
   width: calc(100% - 55px);
 }
 </style>
