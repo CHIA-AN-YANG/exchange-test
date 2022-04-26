@@ -1,6 +1,6 @@
-# Exchange Mobile View
+# Exchange Page - Mobile View
 
-A mock that showcases a exchange process, constructed with Vue.js.
+A mock that showcases an exchange process, constructed with Vue.js.
 
 ---
 
