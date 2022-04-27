@@ -1,25 +1,25 @@
-# Exchange Mobile View
+# Exchange Page - Mobile View
 
-A mock that showcases a exchange process, constructed with Vue.js.
+A mock that showcases an exchange process, constructed with Vue.js.
 
 ---
 
 ## Installation
 
-You can clone this project from here: [github link](https://github.com/CHIA-AN-YANG/exchange-IBM.git)
+You can clone this project from here: [github link](https://github.com/CHIA-AN-YANG/exchange-test.git)
 
 ### 1. Clone and install
 
 Clone with HTTPs:
 
 ```bash
-git clone https://github.com/CHIA-AN-YANG/exchange-IBM.git
+git clone https://github.com/CHIA-AN-YANG/exchange-test.git
 ```
 
 Alternatively, clone with SSH:
 
 ```bash
-git clone git@github.com:CHIA-AN-YANG/exchange-IBM.git
+git clone git@github.com:CHIA-AN-YANG/exchange-test.git
 ```
 
 Run npm install to install required plugins.
