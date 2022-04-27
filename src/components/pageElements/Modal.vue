@@ -88,18 +88,6 @@
 </template>
 
 <script>
-import { METHODS } from "http";
-
-//Can be replaced with lodash if more lodash functions are on demand.
-const debounce = (callback, wait) => {
-  let timeoutId = null;
-  return (...args) => {
-    window.clearTimeout(timeoutId);
-    timeoutId = window.setTimeout(() => {
-      callback.apply(null, args);
-    }, wait);
-  };
-};
 export default {
   props: {
     isOpen: { type: Boolean, default: false },
